@@ -10,7 +10,6 @@
 - [🚢 Installation](#-installation)
 - [🔧 Usage](#-usage)
   - [Commands](#commands)
-  - [Global Flags](#global-flags)
   - [Examples](#examples)
 - [🤝 Contributing](#-contributing)
 - [📄 License](#-license)
@@ -69,31 +68,24 @@ with GitHub PR issues.
 - **help**: Display help information about any command.
 - **update**: Update an existing comment on a PR.
 
-### Global Flags
-
--h, --help: Show help for the commenter command.
--o, --org string: Specify the GitHub organization name.
--p, --pull int: Specify the target pull request number.
--r, --repo string: Specify the target repository name.
-
 ### Examples
 
 To create a new comment on a specific PR:
 
 ```bash
-./commenter create -o your-org -r your-repo -p 123 -m "This is a comment"
+./commenter create -o your-org -r your-repo -p 123 -c "This is a comment"
 ```
 
 To update an existing comment:
 
 ```bash
-./commenter update -o your-org -r your-repo -i 456 -m "Updated comment text"
+./commenter update -o your-org -r your-repo -i 456 -c "Updated comment text"
 ```
 
 To retrieve the ID of a comment based on its text:
 
 ```bash
-./commenter get -o your-org -r your-repo -p 123 -t "Comment text to find"
+./commenter get -o your-org -r your-repo -p 123 -f ./path/to/file
 ```
 
 ## 🤝 Contributing
