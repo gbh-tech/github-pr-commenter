@@ -1,0 +1,41 @@
+name: 🚢 Publish
+
+on:
+  release:
+    types: [published]
+
+concurrency:
+  group: '${{ github.workflow }} @ ${{ github.ref }}'
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -leo pipefail {0}
+    steps:
+      - name: 💻 Checkout current code ref
+        uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ vars.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Install deployment system dependencies
+        run: pip install --upgrade awscli
+
+      - name: 🔵 Set up Go on runner
+        uses: actions/setup-go@v4
+        with:
+          go-version-file: go.mod
+          cache-dependency-path: go.sum
+
+      # - name: 🛠️ Build Atlas tool
+      #   run: go build -o atlas
+
+      # - name: 🚀 Terraform Apply
+      #   run: aws s3 cp ./atlas s3://gbh-utils/
