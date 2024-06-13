@@ -1,0 +1,16 @@
+{
+  "name": "commenter",
+  "version": "0.1.0",
+  "description": "GitHun PR commenter tool",
+  "private": true,
+  "scripts": {
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@commitlint/config-conventional": "^19.1.0",
+    "@release-it/conventional-changelog": "^8.0.1",
+    "commitlint": "^19.2.1",
+    "husky": "^9.0.11",
+    "release-it": "^17.3.0"
+  }
+}
