@@ -1,0 +1,9 @@
+#!/bin/bash
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+REGEX="^(build|chore|ci|docs|feat|fix|perf|refactor|revert|style|test)-[A-Z]{2,4}-[0-9]{1,5}-[A-Za-z0-9-]+$"
+
+if ! [[ $BRANCH =~ $REGEX ]]; then
+  echo "Your commit was rejected due to branching name"
+  exit 1
+fi

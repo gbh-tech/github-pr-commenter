@@ -1,0 +1,24 @@
+name: 🛠️ Build
+
+on:
+  pull_request:
+
+concurrency:
+  group: '${{ github.workflow }} @ ${{ github.head_ref || github.ref }}'
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 💻 Checkout current code ref
+        uses: actions/checkout@v4
+
+      - name: 🔵 Set up Go on runner
+        uses: actions/setup-go@v4
+        with:
+          go-version-file: go.mod
+          cache-dependency-path: go.sum
+
+      - name: 🛠️ Build tool
+        run: go build

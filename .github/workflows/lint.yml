@@ -1,0 +1,53 @@
+name: 📝 Lint
+
+on:
+  pull_request:
+
+concurrency:
+  group: '${{ github.workflow }} @ ${{ github.head_ref || github.ref }}'
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 💻 Checkout current code ref
+        uses: actions/checkout@v4
+
+      - name: 🔵 Set up Go on runner
+        uses: actions/setup-go@v4
+        with:
+            go-version-file: go.mod
+            cache-dependency-path: go.sum
+
+      - name: 💬 Run go formatting
+        run: if [ "$(gofmt -s -l . | wc -l)" -gt 0 ]; then exit 1; fi
+
+      - name: 🌷 Run lint
+        uses: golangci/golangci-lint-action@v4.0.0
+        with:
+          version: v1.54
+
+  commitlint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 💻 Checkout current code ref
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🟢 Configure Node.js on runner
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.tool-versions'
+
+      - name: 🚧 Install dev dependencies
+        run: npm install --only=dev
+
+        # Check all commits pushed to this PR
+      - name: 👁️‍🗨️ Validate PR commits with commitlint
+        run: >- 
+          npx commitlint
+          --from ${{ github.event.pull_request.head.sha }}~${{ github.event.pull_request.commits }}
+          --to ${{ github.event.pull_request.head.sha }}
+          --verbose
