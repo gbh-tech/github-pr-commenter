@@ -71,7 +71,7 @@ func UpdateComment(commentID int64, org, repo, content, filePath string) {
 	var client GithubClient
 	DeclareClient(&client)
 
-	commentBody := "```\n" + content + "```"
+	commentBody := content
 	if filePath != "" {
 		commentBody = "```\n" + files.ParseFileContent(filePath) + "```"
 	}
