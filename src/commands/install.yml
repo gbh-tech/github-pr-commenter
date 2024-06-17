@@ -1,0 +1,16 @@
+description: >
+  Install commenter CLI tool.
+
+parameters:
+    install_dir:
+        type: string
+        default: ./
+        description: >
+            Where should commenter be installed?
+
+steps:
+  - run:
+      environment:
+        PARAM_PATH: <<parameters.install_dir>>
+      name: Install commenter
+      command: <<include(scripts/install.sh)>>

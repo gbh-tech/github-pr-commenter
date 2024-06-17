@@ -1,0 +1,15 @@
+description: >
+  Sample description
+# What will this job do?
+
+executor: default
+
+parameters:
+    install-dir:
+        type: string
+        default: ./
+        description: >
+            Where should commenter be installed?
+steps:
+  - install:
+      install-dir: << parameters.install-dir >>

@@ -1,0 +1,40 @@
+description: >
+  Update comment ID from a GitHub ISSUE comment.
+
+parameters:
+  content_file_path:
+      type: string
+      default: ""
+      description: >
+          File Content to be search
+  content:
+      type: string
+      default: ""
+      description: >
+          String to be search
+  organization:
+      type: string
+      default: ""
+      description: >
+          GitHub organization name
+  repository:
+      type: string
+      default: ""
+      description: >
+          GitHub repository name
+  comment_id:
+      type: string
+      default: ""
+      description: >
+          Pull Request ID
+
+steps:
+  - run:
+      environment:
+        PARAM_PATH: <<parameters.content_file_path>>
+        PARAM_CONTENT: <<parameters.content>>
+        PARAM_ORG: <<parameters.organization>>
+        PARAM_REPO: <<parameters.repository>>
+        PARAM_PULL_ID: <<parameters.comment_id>>
+      name: Update comment ID
+      command: <<include(scripts/update_comment.sh)>>

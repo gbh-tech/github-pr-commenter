@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	commentGithub "github.com/gbh-tech/github-pr-commenter/src"
+	commentGithub "github.com/gbh-tech/github-pr-commenter/internal"
 
 	"github.com/spf13/cobra"
 )
