@@ -26,6 +26,5 @@ func init() {
 
 	updateCommentPrCmd.PersistentFlags().StringP("content", "c", "", "Comment Content")
 	updateCommentPrCmd.PersistentFlags().StringP("filePath", "f", "", "File path")
-	createCommentPrCmd.PersistentFlags().Int64P("commentID", "i", 0, "Comment ID")
-
+	updateCommentPrCmd.PersistentFlags().Int64P("commentID", "i", 0, "Comment ID")
 }

@@ -1,5 +1,12 @@
 
 
+## [0.2.1](https://github.com/gbh-tech/github-pr-commenter/compare/v0.2.0...v0.2.1) (2024-06-17)
+
+
+### Bug Fixes
+
+* (DSO-00) Fix update command ([039cbb1](https://github.com/gbh-tech/github-pr-commenter/commit/039cbb1bb78bff1af33b6831c86d8d6c722e685d))
+
 ## 0.2.0 (2024-06-17)
 
 
