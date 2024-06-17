@@ -38,4 +38,4 @@ jobs:
         run: go build -o commenter
 
       - name: 🚀 Terraform Apply
-        run: aws s3 cp ./atlas s3://gbh-utils/
+        run: aws s3 cp ./commenter s3://gbh-utils/
