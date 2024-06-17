@@ -34,8 +34,9 @@ jobs:
           go-version-file: go.mod
           cache-dependency-path: go.sum
 
-      - name: 🛠️ Build Atlas tool
-        run: go build -o commenter
-
-      - name: 🚀 Terraform Apply
-        run: aws s3 cp ./commenter s3://gbh-utils/
+      - name: 🚀 Run GoReleaser
+        uses: goreleaser/goreleaser-action@v6
+        with:
+          args: release --clean
+        env:
+          GITHUB_TOKEN: ${{secrets.DEVOPS_USER_TOKEN}}
