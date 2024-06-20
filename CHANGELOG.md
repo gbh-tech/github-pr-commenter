@@ -1,5 +1,13 @@
 
 
+## [0.3.2](https://github.com/gbh-tech/github-pr-commenter/compare/v0.3.1...v0.3.2) (2024-06-20)
+
+
+### Miscellaneous
+
+* (DSO-00) Remove ``` form text ([6ac620c](https://github.com/gbh-tech/github-pr-commenter/commit/6ac620c67bedb3938622b6ea5064f301dad768e7))
+* (DSO-00) Remove AWS auth ([ad0edde](https://github.com/gbh-tech/github-pr-commenter/commit/ad0edde93016f0fa341b8caed0e03cb8c4ebb775))
+
 ## [0.3.1](https://github.com/gbh-tech/github-pr-commenter/compare/v0.3.0...v0.3.1) (2024-06-20)
 
 
