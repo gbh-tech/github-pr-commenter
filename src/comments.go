@@ -53,7 +53,7 @@ func CreateComment(pull int, org, repo, content, filePath string) {
 
 	commentBody := content
 	if filePath != "" {
-		commentBody = "```\n" + files.ParseFileContent(filePath) + "\n```"
+		commentBody = files.ParseFileContent(filePath)
 	}
 
 	comment := &github.IssueComment{
@@ -71,9 +71,9 @@ func UpdateComment(commentID int64, org, repo, content, filePath string) {
 	var client GithubClient
 	DeclareClient(&client)
 
-	commentBody := "```\n" + content + "```"
+	commentBody := content
 	if filePath != "" {
-		commentBody = "```\n" + files.ParseFileContent(filePath) + "```"
+		commentBody = files.ParseFileContent(filePath)
 	}
 
 	comment := &github.IssueComment{
