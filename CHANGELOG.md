@@ -1,5 +1,21 @@
 
 
+## [0.3.1](https://github.com/gbh-tech/github-pr-commenter/compare/v0.3.0...v0.3.1) (2024-06-20)
+
+
+### Miscellaneous
+
+* (DSO-00) Fix release workflows ([b6d24cc](https://github.com/gbh-tech/github-pr-commenter/commit/b6d24cce54fea5cd07c73c1edb0a3a972b200fed))
+
+## [0.2.2](https://github.com/gbh-tech/github-pr-commenter/compare/v0.3.0...v0.3.1) (2024-06-20)
+
+
+### Miscellaneous
+
+* (DSO-00) Add tool version file ([a1e5726](https://github.com/gbh-tech/github-pr-commenter/commit/a1e57263259a5905a708cabdf7a15fcb425902cb))
+* (DSO-00) Fix package.json file ([adb8995](https://github.com/gbh-tech/github-pr-commenter/commit/adb8995b3d5226a9ac71dc9d4c1a810888dc4a84))
+* release v0.2.2 ([fd6c5ef](https://github.com/gbh-tech/github-pr-commenter/commit/fd6c5ef0af3744a2ee7e7dc301c621e8d04087a3))
+
 ## [0.2.2](https://github.com/gbh-tech/github-pr-commenter/compare/v0.3.0...v0.2.2) (2024-06-20)
 
 
