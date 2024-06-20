@@ -1,5 +1,13 @@
 
 
+## [0.2.2](https://github.com/gbh-tech/github-pr-commenter/compare/v0.3.0...v0.2.2) (2024-06-20)
+
+
+### Miscellaneous
+
+* (DSO-00) Add tool version file ([a1e5726](https://github.com/gbh-tech/github-pr-commenter/commit/a1e57263259a5905a708cabdf7a15fcb425902cb))
+* (DSO-00) Fix package.json file ([adb8995](https://github.com/gbh-tech/github-pr-commenter/commit/adb8995b3d5226a9ac71dc9d4c1a810888dc4a84))
+
 ## 0.2.0 (2024-06-17)
 
 
