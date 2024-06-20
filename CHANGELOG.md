@@ -1,5 +1,12 @@
 
 
+## [0.3.0](https://github.com/gbh-tech/github-pr-commenter/compare/v0.2.1...v0.3.0) (2024-06-20)
+
+
+### Features
+
+* (DSO-00) Add file comments without format ([f8b8621](https://github.com/gbh-tech/github-pr-commenter/commit/f8b862168973216c7739219bc41c285673826a13))
+
 ## [0.2.1](https://github.com/gbh-tech/github-pr-commenter/compare/v0.2.0...v0.2.1) (2024-06-17)
 
 
