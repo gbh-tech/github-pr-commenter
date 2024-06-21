@@ -1,5 +1,17 @@
 
 
+## [0.3.3](https://github.com/gbh-tech/github-pr-commenter/compare/v0.3.2...v0.3.3) (2024-06-21)
+
+
+### Bug Fixes
+
+* (DSO-00) Fix update command ([f8069a8](https://github.com/gbh-tech/github-pr-commenter/commit/f8069a8d95f6809cc367c39503a0e7c215b6f938))
+
+
+### Miscellaneous
+
+* (DSO-2004) Fix publish workflows ([ca38dea](https://github.com/gbh-tech/github-pr-commenter/commit/ca38dea69ba0b41478f4696d4b10623875137a75))
+
 ## [0.3.2](https://github.com/gbh-tech/github-pr-commenter/compare/v0.3.1...v0.3.2) (2024-06-20)
 
 
