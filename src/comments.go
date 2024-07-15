@@ -3,12 +3,10 @@ package githubComments
 import (
 	"context"
 	"fmt"
-	"os"
 	"strings"
 
 	"github.com/gbh-tech/github-pr-commenter/utils/files"
 
-	"github.com/charmbracelet/log"
 	"github.com/google/go-github/v61/github"
 )
 
@@ -17,72 +15,52 @@ type GithubClient struct {
 	Client *github.Client
 }
 
-func DeclareClient(client *GithubClient) {
-	token := os.Getenv("GITHUB_TOKEN")
+// NewClient creates a new GithubClient with the provided token
+func NewClient(token string, client *GithubClient) error {
 	if token == "" {
-		log.Fatal("Unauthorized: No token present")
+		return fmt.Errorf("unauthorized: no token present")
 	}
 	client.Ctx = context.Background()
 	client.Client = github.NewClient(nil).WithAuthToken(token)
+	return nil
 }
 
-func GetUserComments(pull int, org, repo, content, filePath string) {
-	var client GithubClient
-	DeclareClient(&client)
-
+func (client *GithubClient) GetUserComments(pull int, org, repo, content, filePath string) (int64, error) {
 	comments, _, err := client.Client.Issues.ListComments(client.Ctx, org, repo, pull, nil)
 	if err != nil {
-		log.Fatalf("Error: %v\n", err)
+		return 0, fmt.Errorf("error listing comments: %v", err)
 	}
-	commentBody := content
-	if filePath != "" {
-		commentBody = files.ParseFileContent(filePath)
-	}
+
+	commentBody := files.GetCommentBody(content, filePath)
 	for _, comment := range comments {
 		if strings.Contains(*comment.Body, commentBody) {
-			fmt.Println(*comment.ID)
-			return
+			return *comment.ID, nil
 		}
 	}
-	log.Error("Comment not found!")
+
+	return 0, fmt.Errorf("comment not found")
 }
 
-func CreateComment(pull int, org, repo, content, filePath string) {
-	var client GithubClient
-	DeclareClient(&client)
+func (client *GithubClient) CreateComment(pull int, org, repo, content, filePath string) (*github.IssueComment, error) {
+	commentBody := files.GetCommentBody(content, filePath)
+	comment := &github.IssueComment{Body: github.String(commentBody)}
 
-	commentBody := content
-	if filePath != "" {
-		commentBody = files.ParseFileContent(filePath)
-	}
-
-	comment := &github.IssueComment{
-		Body: github.String(commentBody),
-	}
 	commentResp, _, err := client.Client.Issues.CreateComment(client.Ctx, org, repo, pull, comment)
 	if err != nil {
-		log.Fatalf("Error: %v\n", err)
+		return nil, fmt.Errorf("error creating comment: %v", err)
 	}
 
-	fmt.Printf("Comment was successfully added!\nContent: %v\n", *commentResp.Body)
+	return commentResp, nil
 }
 
-func UpdateComment(commentID int64, org, repo, content, filePath string) {
-	var client GithubClient
-	DeclareClient(&client)
+func (client *GithubClient) UpdateComment(commentID int64, org, repo, content, filePath string) (*github.IssueComment, error) {
+	commentBody := files.GetCommentBody(content, filePath)
+	comment := &github.IssueComment{Body: github.String(commentBody)}
 
-	commentBody := content
-	if filePath != "" {
-		commentBody = files.ParseFileContent(filePath)
-	}
-
-	comment := &github.IssueComment{
-		Body: github.String(commentBody),
-	}
 	commentResp, _, err := client.Client.Issues.EditComment(client.Ctx, org, repo, commentID, comment)
 	if err != nil {
-		log.Fatalf("Error: %v\n", err)
+		return nil, fmt.Errorf("error updating comment: %v", err)
 	}
 
-	fmt.Printf("Comment was successfully Updated!\nContent: %v\n", *commentResp.Body)
+	return commentResp, nil
 }
