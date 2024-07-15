@@ -53,4 +53,4 @@ jobs:
           --verbose
 
       - name: 🔎 Validate PR title with commitlint
-        run: echo "${{ github.event.pull_request.title }}" | np
+        run: echo "${{ github.event.pull_request.title }}" | npx commitlint
