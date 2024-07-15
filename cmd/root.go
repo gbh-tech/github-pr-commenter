@@ -3,7 +3,7 @@ package cmd
 import (
 	"os"
 
-	commentGithub "github.com/gbh-tech/github-pr-commenter/src"
+	commentGithub "github.com/gbh-tech/github-pr-commenter/src/comments"
 
 	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"

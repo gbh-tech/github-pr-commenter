@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/gbh-tech/github-pr-commenter/utils/files"
+	files "github.com/gbh-tech/github-pr-commenter/src/utils"
 
 	"github.com/google/go-github/v61/github"
 )
