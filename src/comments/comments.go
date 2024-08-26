@@ -1,4 +1,4 @@
-package githubComments
+package comments
 
 import (
 	"context"
