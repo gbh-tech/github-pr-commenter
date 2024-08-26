@@ -10,7 +10,7 @@ import (
 var getCommentPrCmd = &cobra.Command{
 	Use:     "get",
 	Short:   "Get message ID based on text",
-	Example: "atlas comment get [flags]",
+	Example: "commenter get [flags]",
 	Run: func(cmd *cobra.Command, args []string) {
 		pull, _ := cmd.Flags().GetInt("pull")
 		repo, _ := cmd.Flags().GetString("repo")

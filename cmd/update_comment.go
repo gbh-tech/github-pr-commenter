@@ -8,7 +8,7 @@ import (
 var updateCommentPrCmd = &cobra.Command{
 	Use:     "update",
 	Short:   "Update comment on PR",
-	Example: "atlas comment update [flags]",
+	Example: "commenter update [flags]",
 	Run: func(cmd *cobra.Command, args []string) {
 		repo, _ := cmd.Flags().GetString("repo")
 		org, _ := cmd.Flags().GetString("org")

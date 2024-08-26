@@ -9,7 +9,7 @@ var createCommentPrCmd = &cobra.Command{
 	Use:     "create",
 	Aliases: []string{"new"},
 	Short:   "Create new comment on PR",
-	Example: "atlas comment create [flags]",
+	Example: "commenter create [flags]",
 	Run: func(cmd *cobra.Command, args []string) {
 		pull, _ := cmd.Flags().GetInt("pull")
 		repo, _ := cmd.Flags().GetString("repo")
