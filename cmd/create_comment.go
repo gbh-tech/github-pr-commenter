@@ -1,8 +1,7 @@
 package cmd
 
 import (
-	commentGithub "github.com/gbh-tech/github-pr-commenter/src"
-
+	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 )
 
@@ -10,7 +9,7 @@ var createCommentPrCmd = &cobra.Command{
 	Use:     "create",
 	Aliases: []string{"new"},
 	Short:   "Create new comment on PR",
-	Example: "atlas comment create [flags]",
+	Example: "commenter create [flags]",
 	Run: func(cmd *cobra.Command, args []string) {
 		pull, _ := cmd.Flags().GetInt("pull")
 		repo, _ := cmd.Flags().GetString("repo")
@@ -18,7 +17,10 @@ var createCommentPrCmd = &cobra.Command{
 		content, _ := cmd.Flags().GetString("content")
 		filePath, _ := cmd.Flags().GetString("filePath")
 
-		commentGithub.CreateComment(pull, org, repo, content, filePath)
+		_, err := GithubClient.CreateComment(pull, org, repo, content, filePath)
+		if err != nil {
+			log.Fatalf("Error: %v\n", err)
+		}
 	},
 }
 

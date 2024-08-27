@@ -1,15 +1,16 @@
 package cmd
 
 import (
-	commentGithub "github.com/gbh-tech/github-pr-commenter/src"
+	"fmt"
 
+	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 )
 
 var getCommentPrCmd = &cobra.Command{
 	Use:     "get",
 	Short:   "Get message ID based on text",
-	Example: "atlas comment get [flags]",
+	Example: "commenter get [flags]",
 	Run: func(cmd *cobra.Command, args []string) {
 		pull, _ := cmd.Flags().GetInt("pull")
 		repo, _ := cmd.Flags().GetString("repo")
@@ -17,7 +18,11 @@ var getCommentPrCmd = &cobra.Command{
 		content, _ := cmd.Flags().GetString("content")
 		filePath, _ := cmd.Flags().GetString("filePath")
 
-		commentGithub.GetUserComments(pull, org, repo, content, filePath)
+		commentID, err := GithubClient.GetUserComments(pull, org, repo, content, filePath)
+		if err != nil {
+			log.Fatalf("Error: %v\n", err)
+		}
+		fmt.Printf("%v", commentID)
 	},
 }
 

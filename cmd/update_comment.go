@@ -1,15 +1,14 @@
 package cmd
 
 import (
-	commentGithub "github.com/gbh-tech/github-pr-commenter/src"
-
+	"github.com/charmbracelet/log"
 	"github.com/spf13/cobra"
 )
 
 var updateCommentPrCmd = &cobra.Command{
 	Use:     "update",
 	Short:   "Update comment on PR",
-	Example: "atlas comment update [flags]",
+	Example: "commenter update [flags]",
 	Run: func(cmd *cobra.Command, args []string) {
 		repo, _ := cmd.Flags().GetString("repo")
 		org, _ := cmd.Flags().GetString("org")
@@ -17,7 +16,10 @@ var updateCommentPrCmd = &cobra.Command{
 		filePath, _ := cmd.Flags().GetString("filePath")
 		commentID, _ := cmd.Flags().GetInt64("commentID")
 
-		commentGithub.UpdateComment(commentID, org, repo, content, filePath)
+		_, err := GithubClient.UpdateComment(commentID, org, repo, content, filePath)
+		if err != nil {
+			log.Fatalf("Error: %v\n", err)
+		}
 	},
 }
 
