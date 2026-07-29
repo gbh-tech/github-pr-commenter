@@ -10,7 +10,6 @@ const MaxCommentBodyLength = 65000
 
 const truncationNotice = "\n\n---\n\n_Comment truncated to 65,000 characters._"
 
-
 func TruncateCommentBody(body string) string {
 	if utf8.RuneCountInString(body) <= MaxCommentBodyLength {
 		return body
