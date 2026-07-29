@@ -1,6 +1,6 @@
 {
   "name": "commenter",
-  "version": "0.3.3",
+  "version": "0.3.4",
   "description": "GitHun PR commenter tool",
   "private": true,
   "scripts": {
@@ -32,8 +32,14 @@
       "tagExclude": "*[-]*",
       "push": true,
       "release": true,
-      "pushArgs": ["--no-verify", "--follow-tags", "--force"],
-      "commitArgs": ["--no-verify"]
+      "pushArgs": [
+        "--no-verify",
+        "--follow-tags",
+        "--force"
+      ],
+      "commitArgs": [
+        "--no-verify"
+      ]
     },
     "plugins": {
       "@release-it/conventional-changelog": {
