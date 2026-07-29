@@ -3,9 +3,27 @@ package files
 import (
 	"fmt"
 	"os"
+	"unicode/utf8"
 )
 
-// Parse content from a file to string
+const MaxCommentBodyLength = 65000
+
+const truncationNotice = "\n\n---\n\n_Comment truncated to 65,000 characters._"
+
+
+func TruncateCommentBody(body string) string {
+	if utf8.RuneCountInString(body) <= MaxCommentBodyLength {
+		return body
+	}
+
+	maxContentRunes := MaxCommentBodyLength - utf8.RuneCountInString(truncationNotice)
+	if maxContentRunes < 0 {
+		maxContentRunes = 0
+	}
+
+	return string([]rune(body)[:maxContentRunes]) + truncationNotice
+}
+
 func ParseFileContent(filePath string) string {
 	file, err := os.ReadFile(filePath)
 	if err != nil {
@@ -14,10 +32,9 @@ func ParseFileContent(filePath string) string {
 	return string(file)
 }
 
-// getCommentBody returns the comment body from either content or filePath
 func GetCommentBody(content, filePath string) string {
 	if filePath != "" {
-		return ParseFileContent(filePath)
+		return TruncateCommentBody(ParseFileContent(filePath))
 	}
-	return content
+	return TruncateCommentBody(content)
 }
